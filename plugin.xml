@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com-cci-bizcard-plugin" version="1.0.0">
+  <name>bizCardScanner</name>
+  <js-module name="bizCardScanner" src="www/bizCardScanner.js">
+    <clobbers target="bizCardScanner"/>
+  </js-module>
+  <platform name="android">
+    <config-file parent="/*" target="config.xml">
+      <feature name="bizCardScanner">
+        <param name="android-package" value="com.cci.bizcard.plugin.BizCardScanPlugin"/>
+      </feature>
+    </config-file>
+
+    <!--<config-file parent="/*" target="AndroidManifest.xml"/>-->
+    <source-file src="src/com/cci/bizcard/plugin/BizCardScanPlugin.java" target-dir="src/com/cci/bizcard/plugin"/>
+  </platform>
+</plugin>
