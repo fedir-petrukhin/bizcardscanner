@@ -14,5 +14,7 @@
 
     <!--<config-file parent="/*" target="AndroidManifest.xml"/>-->
     <source-file src="src/com/cci/bizcard/plugin/BizCardScanPlugin.java" target-dir="src/com/cci/bizcard/plugin"/>
+    <source-file src="lib/android-support-v4.jar" target-dir="libs" />
+    <source-file src="lib/bcr_open_api_20160324.jar" target-dir="libs" />
   </platform>
 </plugin>
