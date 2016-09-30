@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="com.cci.bizcard.plugin" version="1.0.0">
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"
+        id="com.cci.bizcard.plugin" version="1.0.1">
   <name>bizCardScanner</name>
   <description>Business card scanner plugin</description>
   <js-module name="bizCardScanner" src="www/bizCardScanner.js">
