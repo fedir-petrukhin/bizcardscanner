@@ -27,16 +27,30 @@ public class BizCardScanPlugin extends CordovaPlugin {
             OpenApiParams params = new OpenApiParams() {
                 {
                     this.setRecognizeLanguage("");
-                    this.setReturnCropImage(true);
+                    this.setReturnCropImage(false);
                 }
             };
 
-            PluginActivity activity = new PluginActivity(callbackContext);
+            if ("scanPhoto".equals(action)) {
+                PluginActivity activity = new PluginActivity(callbackContext);
+                openApi.recognizeCardByCapture(activity, CARD_SCAN_CODE, params);
+                return true;
+            } else if ("isCamCardInstalled".equals(action)) {
+                callbackContext.success(
+                        openApi.isCamCardInstalled(this.cordova.getActivity().getApplicationContext())
+                );
+            } else if ("isExistAppSupportOpenApi".equals(action)) {
+                callbackContext.success(
+                        openApi.isExistAppSupportOpenApi(this.cordova.getActivity().getApplicationContext())
+                );
+            } else if ("getVersion".equals(action)) {
+                callbackContext.success(
+                        openApi.getVersion()
+                );
+            }
 
-            openApi.recognizeCardByCapture(activity, CARD_SCAN_CODE, params);
-
-            return true;
         } catch (Exception e) {
+
             callbackContext.error("Error code: " + e);
             return false;
         }
