@@ -1,5 +1,5 @@
-var exec = require('cordova/exec');
+//var exec = require('cordova/exec');
 
-exports.scanPhoto = function(success, error) {
-    exec(success, error, "bizCardScanner", "scanPhoto", []);
+window.scanPhoto = function(success, error) {
+    cordova.exec(success, error, "bizCardScanner", "scanPhoto", []);
 };
