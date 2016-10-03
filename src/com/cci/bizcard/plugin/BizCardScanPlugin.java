@@ -48,6 +48,7 @@ public class BizCardScanPlugin extends CordovaPlugin {
                         String.valueOf(openApi.getVersion())
                 );
             }
+            return false;
 
         } catch (Exception e) {
 
