@@ -37,15 +37,15 @@ public class BizCardScanPlugin extends CordovaPlugin {
                 return true;
             } else if ("isCamCardInstalled".equals(action)) {
                 callbackContext.success(
-                        openApi.isCamCardInstalled(this.cordova.getActivity().getApplicationContext())
+                        String.valueOf(openApi.isCamCardInstalled(this.cordova.getActivity().getApplicationContext()))
                 );
             } else if ("isExistAppSupportOpenApi".equals(action)) {
                 callbackContext.success(
-                        openApi.isExistAppSupportOpenApi(this.cordova.getActivity().getApplicationContext())
+                        String.valueOf(openApi.isExistAppSupportOpenApi(this.cordova.getActivity().getApplicationContext()))
                 );
             } else if ("getVersion".equals(action)) {
                 callbackContext.success(
-                        openApi.getVersion()
+                        String.valueOf(openApi.getVersion())
                 );
             }
 
