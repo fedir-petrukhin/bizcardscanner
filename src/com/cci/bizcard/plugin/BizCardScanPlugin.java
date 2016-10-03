@@ -20,20 +20,25 @@ public class BizCardScanPlugin extends CordovaPlugin {
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
-        String apiKey = "4KBgEeNVVH5NPy8hh4NPD0K5";
+        try {
+            String apiKey = "4KBgEeNVVH5NPy8hh4NPD0K5";
 
-        OpenApi openApi = OpenApi.instance(apiKey);
-        OpenApiParams params = new OpenApiParams() {
-            {
-                this.setRecognizeLanguage("");
-                this.setReturnCropImage(true);
-            }
-        };
+            OpenApi openApi = OpenApi.instance(apiKey);
+            OpenApiParams params = new OpenApiParams() {
+                {
+                    this.setRecognizeLanguage("");
+                    this.setReturnCropImage(true);
+                }
+            };
 
-        PluginActivity activity = new PluginActivity(callbackContext);
+            PluginActivity activity = new PluginActivity(callbackContext);
 
-        openApi.recognizeCardByCapture(activity, CARD_SCAN_CODE, params);
+            openApi.recognizeCardByCapture(activity, CARD_SCAN_CODE, params);
 
-        return false;
+            return true;
+        } catch (Exception e) {
+            callbackContext.error("Error code: " + e);
+            return false;
+        }
     }
 }
