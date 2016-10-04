@@ -20,11 +20,8 @@ public class PluginActivity extends Activity {
 
         if (resultCode == RESULT_OK) {
 
-            if (requestCode == BizCardScanPlugin.CARD_SCAN_CODE) {
-
-                String vcfData = data.getStringExtra(OpenApi.EXTRA_KEY_VCF);
-                callbackContext.success(vcfData);
-            }
+            String vcfData = data.getStringExtra(OpenApi.EXTRA_KEY_VCF);
+            callbackContext.success(vcfData);
         } else {
             callbackContext.error("Error code: " + resultCode);
         }

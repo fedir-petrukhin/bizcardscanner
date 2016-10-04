@@ -18,12 +18,20 @@ public class BizCardScanPlugin extends CordovaPlugin {
 
     public static final int CARD_SCAN_CODE = 0x1372;
 
+    private OpenApi openApi;
+
+    @Override
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+        super.initialize(cordova, webView);
+        String apiKey = "4KBgEeNVVH5NPy8hh4NPD0K5";
+        openApi = OpenApi.instance(apiKey);
+        openApi.isCamCardInstalled(this.cordova.getActivity().getApplicationContext());
+        openApi.isExistAppSupportOpenApi(this.cordova.getActivity().getApplicationContext());
+    }
+
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         try {
-            String apiKey = "4KBgEeNVVH5NPy8hh4NPD0K5";
-
-            OpenApi openApi = OpenApi.instance(apiKey);
             OpenApiParams params = new OpenApiParams() {
                 {
                     this.setRecognizeLanguage("");
@@ -35,25 +43,13 @@ public class BizCardScanPlugin extends CordovaPlugin {
                 PluginActivity activity = new PluginActivity(callbackContext);
                 openApi.recognizeCardByCapture(activity, CARD_SCAN_CODE, params);
                 return true;
-            } else if ("isCamCardInstalled".equals(action)) {
-                callbackContext.success(
-                        String.valueOf(openApi.isCamCardInstalled(this.cordova.getActivity().getApplicationContext()))
-                );
-            } else if ("isExistAppSupportOpenApi".equals(action)) {
-                callbackContext.success(
-                        String.valueOf(openApi.isExistAppSupportOpenApi(this.cordova.getActivity().getApplicationContext()))
-                );
-            } else if ("getVersion".equals(action)) {
-                callbackContext.success(
-                        String.valueOf(openApi.getVersion())
-                );
             }
             return false;
 
         } catch (Exception e) {
 
             callbackContext.error("Error code: " + e);
-            return false;
+            return true;
         }
     }
 }
