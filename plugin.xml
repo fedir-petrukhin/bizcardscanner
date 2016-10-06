@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android"
-        id="com.cci.bizcard.plugin" version="1.0.9">
+        id="com.cci.bizcard.plugin" version="1.0.10">
   <name>bizCardScanner</name>
   <description>Business card scanner plugin</description>
   <js-module name="bizCardScanner" src="www/bizCardScanner.js">
@@ -14,7 +14,6 @@
     </config-file>
 
     <!--<config-file parent="/*" target="AndroidManifest.xml"/>-->
-    <source-file src="src/com/cci/bizcard/plugin/PluginActivity.java" target-dir="src/com/cci/bizcard/plugin"/>
     <source-file src="src/com/cci/bizcard/plugin/BizCardScanPlugin.java" target-dir="src/com/cci/bizcard/plugin"/>
     <source-file src="lib/android-support-v4.jar" target-dir="libs" />
     <source-file src="lib/bcr_open_api_20160324.jar" target-dir="libs" />

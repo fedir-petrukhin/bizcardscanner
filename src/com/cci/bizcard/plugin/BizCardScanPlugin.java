@@ -31,6 +31,16 @@ public class BizCardScanPlugin extends CordovaPlugin {
         openApi.isExistAppSupportOpenApi(this.cordova.getActivity().getApplicationContext());
     }
 
+    void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        if (resultCode == RESULT_OK) {
+            String vcfData = data.getStringExtra(OpenApi.EXTRA_KEY_VCF);
+            callbackContext.success(vcfData);
+        } else {
+            callbackContext.error("Error code: " + resultCode);
+        }
+    }
+
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
         try {
@@ -42,8 +52,7 @@ public class BizCardScanPlugin extends CordovaPlugin {
             };
 
             if ("scanPhoto".equals(action)) {
-                PluginActivity activity = new PluginActivity(callbackContext);
-                openApi.recognizeCardByCapture(activity, CARD_SCAN_CODE, params);
+                openApi.recognizeCardByCapture(this.cordova.getActivity(), CARD_SCAN_CODE, params);
                 return true;
             }
             return false;
