@@ -20,17 +20,13 @@ public class BizCardScanPlugin extends CordovaPlugin {
 
     public static final int CARD_SCAN_CODE = 0x1372;
 
-    private OpenApi openApi;
+    //private OpenApi openApi;
     private CallbackContext callbackContext;
 
-    @Override
+    /*@Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
         super.initialize(cordova, webView);
-        String apiKey = "4KBgEeNVVH5NPy8hh4NPD0K5";
-        openApi = OpenApi.instance(apiKey);
-        openApi.isCamCardInstalled(this.cordova.getActivity().getApplicationContext());
-        openApi.isExistAppSupportOpenApi(this.cordova.getActivity().getApplicationContext());
-    }
+    }*/
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -47,6 +43,10 @@ public class BizCardScanPlugin extends CordovaPlugin {
 
         this.callbackContext = callbackContext;
         try {
+            String apiKey = "4KBgEeNVVH5NPy8hh4NPD0K5";
+            openApi = OpenApi.instance(apiKey);
+            openApi.isCamCardInstalled(this.cordova.getActivity().getApplicationContext());
+            openApi.isExistAppSupportOpenApi(this.cordova.getActivity().getApplicationContext());
             OpenApiParams params = new OpenApiParams() {
                 {
                     this.setRecognizeLanguage("");
@@ -55,7 +55,11 @@ public class BizCardScanPlugin extends CordovaPlugin {
             };
 
             if ("scanPhoto".equals(action)) {
+                this.cordova.setActivityResultCallback(this);
+                r.setKeepCallback(true);
                 openApi.recognizeCardByCapture(this.cordova.getActivity(), CARD_SCAN_CODE, params);
+                PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
+                callbackContext.sendPluginResult(r);
                 return true;
             }
             return false;
