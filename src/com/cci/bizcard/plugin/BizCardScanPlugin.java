@@ -38,7 +38,7 @@ public class BizCardScanPlugin extends CordovaPlugin {
             callbackContext.success(vcfData);
         } else {
             callbackContext.error("Error code: " + resultCode + " "
-                    + data.getIntExtra(openApi.ERROR_CODE, 200) + data.getStringExtra(openApi.ERROR_MESSAGE));
+                    + data.getIntExtra(OpenApi.ERROR_CODE, 200) + data.getStringExtra(OpenApi.ERROR_MESSAGE));
         }
     }
 
