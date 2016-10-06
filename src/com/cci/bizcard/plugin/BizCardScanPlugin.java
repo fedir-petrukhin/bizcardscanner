@@ -33,7 +33,7 @@ public class BizCardScanPlugin extends CordovaPlugin {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         if (resultCode == -1) {
             String vcfData = data.getStringExtra(OpenApi.EXTRA_KEY_VCF);
