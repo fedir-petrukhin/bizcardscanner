@@ -21,6 +21,7 @@ public class BizCardScanPlugin extends CordovaPlugin {
     public static final int CARD_SCAN_CODE = 0x1372;
 
     private OpenApi openApi;
+    private CallbackContext callbackContext;
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -33,7 +34,7 @@ public class BizCardScanPlugin extends CordovaPlugin {
 
     void onActivityResult(int requestCode, int resultCode, Intent data) {
 
-        if (resultCode == RESULT_OK) {
+        if (resultCode == -1) {
             String vcfData = data.getStringExtra(OpenApi.EXTRA_KEY_VCF);
             callbackContext.success(vcfData);
         } else {
@@ -43,6 +44,7 @@ public class BizCardScanPlugin extends CordovaPlugin {
 
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
 
+        this.callbackContext = callbackContext;
         try {
             OpenApiParams params = new OpenApiParams() {
                 {
