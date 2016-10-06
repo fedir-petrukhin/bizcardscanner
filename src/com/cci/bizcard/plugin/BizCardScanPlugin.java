@@ -58,7 +58,7 @@ public class BizCardScanPlugin extends CordovaPlugin {
             };
 
             if ("scanPhoto".equals(action)) {
-                //this.cordova.setActivityResultCallback(this);
+                this.cordova.setActivityResultCallback(this);
                 openApi.recognizeCardByCapture(this.cordova.getActivity(), CARD_SCAN_CODE, params);
                 PluginResult r = new PluginResult(PluginResult.Status.NO_RESULT);
                 r.setKeepCallback(true);
