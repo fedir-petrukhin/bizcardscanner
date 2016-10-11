@@ -46,7 +46,7 @@ public class BizCardScanPlugin extends CordovaPlugin {
 
         this.callbackContext = callbackContext;
         try {
-            String apiKey = "4KBgEeNVVH5NPy8hh4NPD0K5";
+            String apiKey = "8SLdeRJ0K37FrLUB6WPCCYD2";
             OpenApi openApi = OpenApi.instance(apiKey);
             openApi.isCamCardInstalled(this.cordova.getActivity().getApplicationContext());
             openApi.isExistAppSupportOpenApi(this.cordova.getActivity().getApplicationContext());
